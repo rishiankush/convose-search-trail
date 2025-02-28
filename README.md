@@ -1,5 +1,7 @@
 # Convose Interest Search
 
+https://github.com/user-attachments/assets/a6780880-cc6a-4a1b-b727-9576c2ab85d5
+
 ## Overview
 
 This project implements an **interest search and autocomplete feature** for the **Convose React Native app**. Users can search for interests, and results will be displayed in **alphabetical order** and then by **popularity**. The implementation ensures smooth **UX**, preventing unnecessary reloads while filtering on the frontend.
@@ -25,7 +27,7 @@ This project implements an **interest search and autocomplete feature** for the 
 
 1. Clone the repository:
    ```sh
-   git clone https://github.com/yourusername/convose-interest-search.git
+   git clone https://github.com/rishiankush/convose-search-trail.git
    cd convose-interest-search
    ```
 2. Install dependencies:
