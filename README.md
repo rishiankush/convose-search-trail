@@ -1,50 +1,99 @@
-# Welcome to your Expo app 👋
+# Convose Interest Search
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+## Overview
 
-## Get started
+This project implements an **interest search and autocomplete feature** for the **Convose React Native app**. Users can search for interests, and results will be displayed in **alphabetical order** and then by **popularity**. The implementation ensures smooth **UX**, preventing unnecessary reloads while filtering on the frontend.
 
-1. Install dependencies
+## Features
 
-   ```bash
+- **Interest Autocomplete:** Fetches suggestions from the API.
+- **Instant Filtering:** Filters frontend results first before making API calls.
+- **Bottom-to-Top Listing:** Interests are displayed from bottom to top for better usability.
+- **Debounced Search:** Reduces API calls while maintaining responsive search.
+- **Primary & Secondary Search Terms:** Displays both terms as per the requirements.
+- **Expo Router Support:** Uses the latest React Native architecture with Expo.
+
+## Technologies Used
+
+- **React Native** (Expo)
+- **TypeScript**
+- **Axios** for API calls
+- **FlatList** for optimized rendering
+- **Debounce Hook** for performance optimization
+
+## Installation
+
+1. Clone the repository:
+   ```sh
+   git clone https://github.com/yourusername/convose-interest-search.git
+   cd convose-interest-search
+   ```
+2. Install dependencies:
+   ```sh
    npm install
    ```
-
-2. Start the app
-
-   ```bash
-    npx expo start
+3. Start the Expo project:
+   ```sh
+   npm start
    ```
 
-In the output, you'll find options to open the app in a
+## Project Structure
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
+```
+convose-interest-search/
+│── api/                 # API service layer
+│   ├── interests.ts     # API calls for fetching interests
+│── components/          # Reusable components
+│   ├── SearchInput.tsx  # Search input component
+│   ├── InterestItem.tsx # Individual interest item
+│── hooks/               # Custom hooks
+│   ├── useDebounce.ts   # Debounce hook for optimized searching
+│── app/                 # Navigation & screens
+│   ├── (tabs)/interests.tsx # Interest search screen
+│── utils/               # Helper functions
+│── README.md            # Project documentation
+│── package.json         # Dependencies
+│── tsconfig.json        # TypeScript config
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## API Integration
 
-## Learn more
+The app fetches interests using the **Convose Interests Autocomplete API**.
 
-To learn more about developing your project with Expo, look at the following resources:
+### Example API Request:
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+```sh
+GET https://be-v2.convose.com/autocomplete/interests?q=travel&limit=15
+Headers:
+  Authorization: Jy8RZCXvvc6pZQUu2QZ2
+```
 
-## Join the community
+### Example API Response:
 
-Join our community of developers creating universal apps.
+```json
+{
+  "autocomplete": [
+    {
+      "id": 1234,
+      "name": "Traveling",
+      "color": "#19AAEB",
+      "avatar": "https://cdn.convose.com/travel.png",
+      "existing": true
+    }
+  ],
+  "pages_left": 10
+}
+```
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+## How It Works
+
+1. **On App Start:** Default interest values are loaded.
+2. **On Typing:** The list is first filtered on the frontend before calling the API.
+3. **On Search Match:** Matches are listed in alphabetical order and then by popularity.
+4. **UX Enhancements:** The list updates smoothly without flashing or unnecessary reloads.
+
+## Contribution
+
+- Fork the repository and create a new branch.
+- Commit changes and open a pull request.
+- Follow best practices for React Native and Expo development.
